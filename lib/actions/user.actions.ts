@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { connectToDatabase } from '@/lib/database'
 import User from '@/lib/database/models/user.model'
 import Order from '@/lib/database/models/order.model'
-import deal from '@/lib/database/models/deal.model'
+import Deal from '@/lib/database/models/deal.model'
 import { handleError } from '@/lib/utils'
 
 import { CreateUserParams, UpdateUserParams } from '@/types'
@@ -61,7 +61,7 @@ export async function deleteUser(clerkId: string) {
     // Unlink relationships
     await Promise.all([
       // Update the 'deals' collection to remove references to the user
-      deal.updateMany(
+      Deal.updateMany(
         { _id: { $in: userToDelete.deals } },
         { $pull: { organizer: userToDelete._id } }
       ),

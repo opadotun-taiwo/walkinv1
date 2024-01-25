@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-export interface IDeals extends Document {
+export interface IDeal extends Document {
     _id: string;
     title: string;
     businessName: string;
@@ -32,7 +32,7 @@ const DealSchema = new Schema({
     price: {type: String },
     quorum: {type: Number},
     state: {type: String},
-    Address: { type: String },
+    location: { type: String },
     commission: { type: Number, default: 0.03 },
     isFree: {type: Boolean, default: false},
     url: {type: String},
